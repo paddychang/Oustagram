@@ -1,9 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import { createBrowserHistory } from "history";
 import jwtDecode from "jwt-decode";
@@ -21,7 +16,6 @@ import AuthRoute from "util/AuthRoute";
 import Home from "pages/Home";
 import Signin from "pages/Signin";
 import Signup from "pages/Signup";
-import TextField from "@mui/material/TextField";
 
 axios.defaults.baseURL =
   "http://localhost:5001/oustagram/australia-southeast1/api";
@@ -48,10 +42,10 @@ function App() {
       <Provider store={store}>
         <Router history={history}>
           <Header />
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/Signin" component={Signin} />
-            <Route path="/Signup" component={Signup} />
+          <Routes>
+            <Route path="/" exact element={<Home />} />
+            <Route path="/signin" exact element={<Signin />} />
+            <Route path="/signup" exact element={<Signup />} />
             {/* <Route exact path="/users/:handle" component={User} /> */}
             {/* <Route
               exact
@@ -60,7 +54,7 @@ function App() {
             /> */}
             {/* <AuthRoute path="/Signin" component={Signin} />
             <AuthRoute path="/Signup" component={Signup} /> */}
-          </Switch>
+          </Routes>
         </Router>
       </Provider>
     </ThemeProvider>

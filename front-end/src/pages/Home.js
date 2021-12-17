@@ -25,7 +25,7 @@ const Home = () => {
       <Container maxWidth="lg">
         <Grid container pacing={2}>
           <Grid item sm={12} md={8}>
-            {/* {!loading ? (
+            {!loading ? (
               posts.length > 0 ? (
                 posts.map((post) => <PostCard key={post.postId} post={post} />)
               ) : (
@@ -33,7 +33,7 @@ const Home = () => {
               )
             ) : (
               <h2>Loading....</h2>
-            )} */}
+            )}
           </Grid>
           <Grid item sm={12} md={4}>
             <h1>porifle</h1>

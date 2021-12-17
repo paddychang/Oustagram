@@ -1,9 +1,13 @@
-import * as React from "react";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+// Redux
+import { loginUser } from "redux/actions/userActions";
 // MUI
+import CssBaseline from "@mui/material/CssBaseline";
+
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -11,37 +15,31 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 // Assets
 import icon from "assets/img/icon192.png";
+import { useDispatch } from "react-redux";
 // Components
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {`Copyright © GA React Final Project by Paddy ${new Date().getFullYear()}.`}
-    </Typography>
-  );
-}
+import Copyright from "components/Copyright";
 
 const theme = createTheme();
 
 const SignIn = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    // console.log({
-    //   email: data.get("email"),
-    //   password: data.get("password"),
-    // });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const userData = {
+      email,
+      password,
+    };
+    dispatch(loginUser(userData, navigate));
   };
 
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
+        <CssBaseline />
         <Box
           sx={{
             marginTop: 8,
@@ -73,6 +71,7 @@ const SignIn = () => {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -83,6 +82,7 @@ const SignIn = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e) => setPassword(e.target.value)}
             />
             <Button
               type="submit"
@@ -94,12 +94,12 @@ const SignIn = () => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                {/* <Link to="/#" variant="body2">
                   Forgot password?
-                </Link>
+                </Link> */}
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link to="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

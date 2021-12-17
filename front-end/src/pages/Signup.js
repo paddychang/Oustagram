@@ -1,47 +1,45 @@
-import * as React from "react";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import { signupUser } from "redux/actions/userActions";
+// MUI
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import CircularProgress from "@mui/material/CircularProgress";
+// Assets
+import icon from "assets/img/icon192.png";
+// Components
+import Copyright from "components/Copyright";
 
 const theme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const dispatch = useDispatch();
+  const { loading, errors } = useSelector((state) => state.UI);
+  let navigate = useNavigate();
+  const [newUser, setNewUser] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+    handle: "",
+  });
+
+  const handleChange = (e) => {
+    setNewUser({ ...newUser, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(newUser);
+    dispatch(signupUser(newUser, navigate));
   };
 
   return (
@@ -56,9 +54,12 @@ export default function SignUp() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <Avatar
+            sx={{ m: 1, bgcolor: "secondary.main" }}
+            variant="square"
+            src={icon}
+          />
+
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
@@ -69,25 +70,18 @@ export default function SignUp() {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
-                  autoComplete="given-name"
-                  name="firstName"
+                  autoComplete="name"
+                  name="handle"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id="handle"
+                  label="Username"
                   autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
+                  onChange={handleChange}
+                  error={errors && "handle" in errors ? true : false}
+                  helperText={errors && "handle" in errors && errors.handle}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -98,6 +92,9 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={handleChange}
+                  error={errors && "email" in errors ? true : false}
+                  helperText={errors && "email" in errors && errors.email}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -109,14 +106,33 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={handleChange}
+                  error={errors && "password" in errors ? true : false}
+                  helperText={errors && "password" in errors && errors.password}
+                  InputProps={{
+                    autoComplete: "off",
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
+                <TextField
+                  required
+                  fullWidth
+                  name="confirmPassword"
+                  label="Confirm Password"
+                  type="password"
+                  id="confirmPassword"
+                  autoComplete="current-password"
+                  onChange={handleChange}
+                  error={errors && "confirmPassword" in errors ? true : false}
+                  helperText={
+                    errors &&
+                    "confirmPassword" in errors &&
+                    errors.confirmPassword
                   }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
+                  InputProps={{
+                    autoComplete: "off",
+                  }}
                 />
               </Grid>
             </Grid>
@@ -127,10 +143,12 @@ export default function SignUp() {
               sx={{ mt: 3, mb: 2 }}
             >
               Sign Up
+              {errors && "general" in errors && <CircularProgress size={30} />}
             </Button>
+
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link to="/signin" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

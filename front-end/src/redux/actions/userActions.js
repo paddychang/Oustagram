@@ -9,7 +9,7 @@ import {
 } from "../types";
 import axios from "axios";
 
-export const loginUser = (userData, history) => (dispatch) => {
+export const loginUser = (userData, navigate) => (dispatch) => {
   dispatch({ type: LOADING_UI });
   axios
     .post("/signin", userData)
@@ -17,7 +17,7 @@ export const loginUser = (userData, history) => (dispatch) => {
       setAuthorizationHeader(res.data.token);
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
-      history.push("/");
+      navigate("/");
     })
     .catch((err) => {
       dispatch({
@@ -27,7 +27,7 @@ export const loginUser = (userData, history) => (dispatch) => {
     });
 };
 
-export const signupUser = (newUserData, history) => (dispatch) => {
+export const signupUser = (newUserData, navigate) => (dispatch) => {
   dispatch({ type: LOADING_UI });
   axios
     .post("/signup", newUserData)
@@ -35,7 +35,7 @@ export const signupUser = (newUserData, history) => (dispatch) => {
       setAuthorizationHeader(res.data.token);
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
-      history.push("/");
+      navigate("/");
     })
     .catch((err) => {
       dispatch({
