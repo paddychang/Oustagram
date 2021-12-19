@@ -7,6 +7,7 @@ import { Grid, Container } from "@mui/material";
 import homeStyles from "assets/jss/pages/homeStyles";
 // Components
 import PostCard from "components/PostCard";
+import ProfileCard from "components/ProfileCard";
 
 const Home = () => {
   const classes = homeStyles();
@@ -36,7 +37,7 @@ const Home = () => {
             )}
           </Grid>
           <Grid item sm={12} md={4}>
-            <h1>porifle</h1>
+            <ProfileCard />
           </Grid>
         </Grid>
       </Container>

@@ -92,6 +92,7 @@ export const unlikePost = (postId) => (dispatch) => {
 };
 // Submit a comment
 export const submitComment = (postId, commentData) => (dispatch) => {
+  console.log(postId, commentData);
   axios
     .post(`/post/${postId}/comment`, commentData)
     .then((res) => {

@@ -26,6 +26,18 @@ const theme = createTheme({
       fontWeight: 300,
       fontSize: 28,
     },
+    h3: {
+      fontWeight: 400,
+      fontSize: 16,
+    },
+    h4: {
+      fontSize: 14,
+      fontWeight: 600,
+      color: "#0f7ff4",
+    },
+    h5: {
+      fontSize: 12,
+    },
   },
 });
 
