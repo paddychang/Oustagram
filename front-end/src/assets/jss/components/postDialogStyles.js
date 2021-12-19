@@ -1,10 +1,6 @@
 import { makeStyles } from "@mui/styles";
 
 const postDialogStyles = makeStyles({
-  dialogContent: {
-    maxWidth: 500,
-    maxHeight: 450,
-  },
   profileImage: {
     maxWidth: 200,
     height: 200,
@@ -17,11 +13,11 @@ const postDialogStyles = makeStyles({
     flexGrow: 1,
   },
 
-  closeButton: {
-    position: "absolute",
-    left: "90%",
-    top: "2%",
-  },
+  // closeButton: {
+  //   position: "absolute",
+  //   left: "90%",
+  //   top: "2%",
+  // },
   expandButton: {
     position: "absolute",
     left: "90%",

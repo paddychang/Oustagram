@@ -7,6 +7,7 @@ import {
   POST_POST,
   SET_POST,
   SUBMIT_COMMENT,
+  ADD_COMMENT_COUNT,
 } from "../types";
 
 const initialState = {
@@ -65,6 +66,16 @@ const postReducer = (state = initialState, action) => {
           comments: [action.payload, ...state.post.comments],
         },
       };
+    case ADD_COMMENT_COUNT:
+      return {
+        ...state,
+        posts: state.posts.map((post) =>
+          post.postId === action.postId
+            ? { ...post, commentCount: post.commentCount + 1 }
+            : post
+        ),
+      };
+
     default:
       return state;
   }

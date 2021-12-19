@@ -75,7 +75,7 @@ const PostDialog = ({ postId, userHandle, handleSubmit }) => {
       </IconButton>
       <Dialog open={state.open} onClose={handleClose} maxWidth="xl">
         <Grid container space={1}>
-          <Grid item sx={4}>
+          <Grid item>
             <Box
               sx={{
                 width: 600,
@@ -91,7 +91,7 @@ const PostDialog = ({ postId, userHandle, handleSubmit }) => {
               />
             </Box>
           </Grid>
-          <Grid item sx={8}>
+          <Grid item>
             <Box
               sx={{
                 width: 720,
@@ -107,11 +107,27 @@ const PostDialog = ({ postId, userHandle, handleSubmit }) => {
                     height: 60,
                   }}
                 >
-                  <UserAvatar
-                    userImage={post.userImage}
-                    handle={post.handle}
-                    location={post.location}
-                  />
+                  <Box
+                    component="div"
+                    sx={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <IconButton>
+                      <Avatar
+                        aria-label="recipe"
+                        src={post.userImage}
+                        sx={{ width: 50, height: 50 }}
+                      />
+                    </IconButton>
+                    <Box component="div" sx={{ ml: 3 }}>
+                      <Typography variant="h1" sx={{ mb: 0.5 }}>
+                        {post.userHandle}
+                      </Typography>
+                    </Box>
+                  </Box>
                   {/* <IconButton>
                       <Avatar
                         aria-label="recipe"
@@ -153,15 +169,19 @@ const PostDialog = ({ postId, userHandle, handleSubmit }) => {
                 >
                   <UserAvatar
                     userImage={post.userImage}
-                    handle={post.handle}
-                    location={post.location}
+                    handle={post.useHandle}
                   />
                 </Box>
-                <CommentInput
-                  state={state}
-                  setState={setState}
-                  handleSubmit={handleSubmit}
-                />
+                {/* {post.comments.length > 0
+                  ? post.comments.map((comment) => (
+                      <CommentInput
+                        state={state}
+                        setState={setState}
+                        handleSubmit={handleSubmit}
+                        comment={comment}
+                      />
+                    ))
+                  : "No Comments"} */}
               </Box>
             </Box>
           </Grid>

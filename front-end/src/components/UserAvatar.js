@@ -11,7 +11,7 @@ import {
   Avatar,
 } from "@mui/material";
 
-const UserAvatar = ({ userImage, handle, location }) => {
+const UserAvatar = ({ userImage, userHandle, comment }) => {
   return (
     <Box
       component="div"
@@ -30,10 +30,10 @@ const UserAvatar = ({ userImage, handle, location }) => {
       </IconButton>
       <Box component="div" sx={{ ml: 3 }}>
         <Typography variant="h1" sx={{ mb: 0.5 }}>
-          name
+          {userHandle}
         </Typography>
         <Typography variant="h3" color="gray">
-          Melbourne
+          {comment}
         </Typography>
       </Box>
     </Box>

@@ -11,6 +11,7 @@ import {
   SET_POST,
   STOP_LOADING_UI,
   SUBMIT_COMMENT,
+  ADD_COMMENT_COUNT,
 } from "../types";
 import axios from "axios";
 
@@ -92,7 +93,6 @@ export const unlikePost = (postId) => (dispatch) => {
 };
 // Submit a comment
 export const submitComment = (postId, commentData) => (dispatch) => {
-  console.log(postId, commentData);
   axios
     .post(`/post/${postId}/comment`, commentData)
     .then((res) => {
@@ -100,6 +100,7 @@ export const submitComment = (postId, commentData) => (dispatch) => {
         type: SUBMIT_COMMENT,
         payload: res.data,
       });
+      dispatch({ type: ADD_COMMENT_COUNT, postId });
       dispatch(clearErrors());
     })
     .catch((err) => {
