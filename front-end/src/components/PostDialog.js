@@ -85,7 +85,7 @@ const PostDialog = ({ state, setState, postId, userHandle, handleSubmit }) => {
               }}
             >
               <img
-                src={post.images}
+                src={post.imageUrl}
                 alt="post images"
                 className={classes.images}
               />

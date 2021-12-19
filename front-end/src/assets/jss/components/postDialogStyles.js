@@ -9,7 +9,8 @@ const postDialogStyles = makeStyles({
   },
   images: {
     hetigh: "auto",
-    objectFit: "cover",
+    maxWidth: 600,
+    objectFit: "contain",
     flexGrow: 1,
   },
 

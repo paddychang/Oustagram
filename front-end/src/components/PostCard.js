@@ -29,6 +29,7 @@ import noImg from "assets/img/no-img.png";
 import PostDialog from "./PostDialog";
 // Components
 import CommentInput from "components/CommentInput";
+import LikeButton from "components/LikeButton";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -88,9 +89,7 @@ export default function PostCard({ post }) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
+        <LikeButton postId={post.postId} />
         <PostDialog
           postId={post.postId}
           userHandle={post.userHandle}
