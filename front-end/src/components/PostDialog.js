@@ -48,7 +48,7 @@ const PostDialog = ({ postId, userHandle, handleSubmit }) => {
       dispatch(getPost(postId));
     };
     fetchData();
-  }, []);
+  }, [state.open]);
 
   const handleOpen = () => {
     let oldPath = window.location.pathname;
@@ -60,6 +60,11 @@ const PostDialog = ({ postId, userHandle, handleSubmit }) => {
     window.history.pushState(null, null, newPath);
 
     setState({ open: true, oldPath, newPath });
+
+    // const fetchData = async () => {
+    //   dispatch(getPost(postId));
+    // };
+    // fetchData();
   };
 
   const handleClose = () => {
@@ -167,21 +172,22 @@ const PostDialog = ({ postId, userHandle, handleSubmit }) => {
                     overflow: "auto",
                   }}
                 >
-                  <UserAvatar
-                    userImage={post.userImage}
-                    handle={post.useHandle}
-                  />
+                  {post.comments.length > 0
+                    ? post.comments.map((comment, idx) => (
+                        <UserAvatar
+                          key={idx}
+                          userImage={comment.userImage}
+                          handle={comment.useHandle}
+                          comment={comment.comment}
+                        />
+                      ))
+                    : "No Comments"}
                 </Box>
-                {/* {post.comments.length > 0
-                  ? post.comments.map((comment) => (
-                      <CommentInput
-                        state={state}
-                        setState={setState}
-                        handleSubmit={handleSubmit}
-                        comment={comment}
-                      />
-                    ))
-                  : "No Comments"} */}
+                <CommentInput
+                  state={state}
+                  setState={setState}
+                  handleSubmit={handleSubmit}
+                />
               </Box>
             </Box>
           </Grid>

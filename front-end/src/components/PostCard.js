@@ -94,7 +94,6 @@ export default function PostCard({ post }) {
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
-
         <PostDialog
           postId={post.postId}
           userHandle={post.userHandle}

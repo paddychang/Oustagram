@@ -12,7 +12,17 @@ import {
 
 const initialState = {
   posts: [],
-  post: {},
+  post: {
+    userHandle: "",
+    createdAt: "",
+    body: "",
+    commentCount: 0,
+    images: "",
+    userImage: "",
+    likeCount: 0,
+    postId: "",
+    comments: [],
+  },
   loading: false,
 };
 
