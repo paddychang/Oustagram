@@ -12,6 +12,7 @@ import {
   STOP_LOADING_UI,
   SUBMIT_COMMENT,
   ADD_COMMENT_COUNT,
+  UPDATA_POST_IMAGE,
 } from "../types";
 import axios from "axios";
 
@@ -49,8 +50,9 @@ export const getPost = (postId) => (dispatch) => {
 };
 
 // Post a post
-export const postPost = (newPost) => (dispatch) => {
+export const createPost = (newPost, file) => (dispatch) => {
   dispatch({ type: LOADING_UI });
+  console.log("file-test", file);
   axios
     .post("/post", newPost)
     .then((res) => {
@@ -59,6 +61,13 @@ export const postPost = (newPost) => (dispatch) => {
         payload: res.data,
       });
       dispatch(clearErrors());
+      return res.data.postId;
+    })
+    .then((postId) => {
+      console.log(postId, file);
+      uploadImage(postId, file).then((imageUrl) => {
+        dispatch({ type: UPDATA_POST_IMAGE, payload: { postId, imageUrl } });
+      });
     })
     .catch((err) => {
       dispatch({
@@ -67,6 +76,19 @@ export const postPost = (newPost) => (dispatch) => {
       });
     });
 };
+
+async function uploadImage(postId, file) {
+  let imageUrl;
+  await axios
+    .post(`/post/image/${postId}`, file)
+    .then((res) => {
+      console.log(res.data.message);
+      imageUrl = res.data.imageUrl;
+    })
+    .catch((err) => console.log(err));
+  return imageUrl;
+}
+
 // Like a post
 export const likePost = (postId) => (dispatch) => {
   axios

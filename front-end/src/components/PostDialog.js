@@ -32,9 +32,9 @@ import postDialogStyles from "assets/jss/components/postDialogStyles";
 import UserAvatar from "components/UserAvatar";
 import CommentInput from "components/CommentInput";
 
-const PostDialog = ({ postId, userHandle, handleSubmit }) => {
+const PostDialog = ({ state, setState, postId, userHandle, handleSubmit }) => {
   const classes = postDialogStyles();
-  const [state, setState] = useState({
+  const [path, setPath] = useState({
     open: false,
     oldPath: "",
     newPath: "",
@@ -48,7 +48,7 @@ const PostDialog = ({ postId, userHandle, handleSubmit }) => {
       dispatch(getPost(postId));
     };
     fetchData();
-  }, [state.open]);
+  }, [path.open]);
 
   const handleOpen = () => {
     let oldPath = window.location.pathname;
@@ -59,17 +59,12 @@ const PostDialog = ({ postId, userHandle, handleSubmit }) => {
 
     window.history.pushState(null, null, newPath);
 
-    setState({ open: true, oldPath, newPath });
-
-    // const fetchData = async () => {
-    //   dispatch(getPost(postId));
-    // };
-    // fetchData();
+    setPath({ open: true, oldPath, newPath });
   };
 
   const handleClose = () => {
-    window.history.pushState(null, null, state.oldPath);
-    setState({ ...state, open: false });
+    window.history.pushState(null, null, path.oldPath);
+    setPath({ ...path, open: false });
     clearErrors();
   };
 
@@ -78,7 +73,7 @@ const PostDialog = ({ postId, userHandle, handleSubmit }) => {
       <IconButton aria-label="chat" onClick={handleOpen}>
         <ChatBubbleOutlineIcon />
       </IconButton>
-      <Dialog open={state.open} onClose={handleClose} maxWidth="xl">
+      <Dialog open={path.open} onClose={handleClose} maxWidth="xl">
         <Grid container space={1}>
           <Grid item>
             <Box

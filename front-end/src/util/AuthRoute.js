@@ -1,24 +1,8 @@
 import React from "react";
-import { Route, Navigate } from "react-router-dom";
-import PropTypes from "prop-types";
+import { Navigate } from "react-router-dom";
 
-const AuthRoute = ({ component: Component, authenticated, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        authenticated === true ? (
-          <Navigate replace to="/" />
-        ) : (
-          <Component {...props} />
-        )
-      }
-    />
-  );
-};
-
-AuthRoute.propTypes = {
-  user: PropTypes.object,
+const AuthRoute = ({ children, authenticated }) => {
+  return authenticated ? <Navigate replace to="/" /> : children;
 };
 
 export default AuthRoute;

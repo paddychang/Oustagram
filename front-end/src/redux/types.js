@@ -19,3 +19,4 @@ export const DELETE_POST = "DELETE_POST";
 export const POST_POST = "POST_POST";
 export const SUBMIT_COMMENT = "SUBMIT_COMMENT";
 export const ADD_COMMENT_COUNT = "ADD_COMMENT_COUNT";
+export const UPDATA_POST_IMAGE = "UPDATA_POST_IMAGE";

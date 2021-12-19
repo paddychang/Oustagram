@@ -50,10 +50,7 @@ export default function PostCard({ post }) {
   const disptach = useDispatch();
   const date = dayjs(post.createdAt).format("DD-MM-YYYY HH:mm:ss");
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
+  // Submit a Comment
   const handleSubmit = (e) => {
     e.preventDefault();
     if (state.comment.trim() === "") {
@@ -82,7 +79,7 @@ export default function PostCard({ post }) {
       <CardMedia
         component="img"
         height="460"
-        image={post.images}
+        image={post.imageUrl}
         alt="Post image"
       />
       <CardContent>

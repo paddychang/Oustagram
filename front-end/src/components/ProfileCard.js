@@ -15,24 +15,21 @@ const ProfileCard = () => {
   return (
     <>
       <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
-        <IconButton sx={{ mt: 3, ml: 3, mr: 3 }}>
+        <Link to="profile">
           <Avatar
             aria-label="recipe"
             src={imageUrl}
             sx={{ width: 75, height: 75 }}
           />
-        </IconButton>
-        <div>
+        </Link>
+        <Box component="div" sx={{ ml: 3 }}>
           <Typography variant="h1" sx={{ mb: 0.5 }}>
             {handle}
           </Typography>
           <Typography variant="h3" color="gray" sx={{ mb: 0.5 }}>
-            Melbourne
+            {location}
           </Typography>
-          <Link to="profile">
-            <Typography variant="h4">Edit Profile</Typography>
-          </Link>
-        </div>
+        </Box>
       </Box>
       <Divider>Followers</Divider>
     </>

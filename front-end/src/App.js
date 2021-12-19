@@ -7,7 +7,7 @@ import jwtDecode from "jwt-decode";
 import store from "redux/store";
 import { Provider, useSelector, useDispatch } from "react-redux";
 import { getUserData, logoutUser } from "redux/actions/userActions";
-import { SET_AUTHENTICATED } from "./redux/types";
+import { SET_AUTHENTICATED } from "redux/types";
 import { getAllPosts } from "redux/actions/postsActions";
 // MUI
 import { ThemeProvider } from "@mui/material/styles";
@@ -30,8 +30,7 @@ if (token) {
   const decodedToken = jwtDecode(token);
   if (decodedToken.exp * 1000 < Date.now()) {
     store.dispatch(logoutUser());
-    // window.location.href = "/Signin";
-    history.push("/Signin");
+    history.push("/signin");
   } else {
     store.dispatch({ type: SET_AUTHENTICATED });
     axios.defaults.headers.common["Authorization"] = token;
@@ -48,16 +47,24 @@ function App() {
           <Routes>
             <Route path="/" exact element={<Home />} />
             <Route path="profile" exact element={<Profile />} />
-            <Route path="signin" exact element={<Signin />} />
-            <Route path="signup" exact element={<Signup />} />
-            {/* <Route exact path="/users/:handle" component={User} /> */}
-            {/* <Route
+            <Route
+              path="signin"
               exact
-              path="/users/:handle/scream/:screamId"
-              component={User}
-            /> */}
-            {/* <AuthRoute path="/Signin" component={Signin} />
-            <AuthRoute path="/Signup" component={Signup} /> */}
+              element={
+                <AuthRoute>
+                  <Signin />
+                </AuthRoute>
+              }
+            />
+            <Route
+              path="signup"
+              exact
+              element={
+                <AuthRoute>
+                  <Signup />
+                </AuthRoute>
+              }
+            />
           </Routes>
         </Router>
       </Provider>

@@ -8,6 +8,7 @@ import {
   SET_POST,
   SUBMIT_COMMENT,
   ADD_COMMENT_COUNT,
+  UPDATA_POST_IMAGE,
 } from "../types";
 
 const initialState = {
@@ -85,7 +86,15 @@ const postReducer = (state = initialState, action) => {
             : post
         ),
       };
-
+    case UPDATA_POST_IMAGE:
+      return {
+        ...state,
+        posts: state.posts.map((post) =>
+          post.postId === action.payload.postId
+            ? { ...post, imageUrl: action.payload.imageUrl }
+            : post
+        ),
+      };
     default:
       return state;
   }
