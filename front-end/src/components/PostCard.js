@@ -5,7 +5,7 @@ import { submitComment } from "redux/actions/postsActions";
 import { useDispatch, useSelector } from "react-redux";
 // MUI
 import { styled } from "@mui/material/styles";
-import Card from "@mui/material/Card";
+import { Card, Menu, MenuItem, Button } from "@mui/material";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -30,6 +30,7 @@ import PostDialog from "./PostDialog";
 // Components
 import CommentInput from "components/CommentInput";
 import LikeButton from "components/LikeButton";
+import DeletePost from "components/DeletePost";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -48,8 +49,11 @@ export default function PostCard({ post }) {
   const initialState = { comment: "", error: "" };
   const [state, setState] = useState(initialState);
   const UI = useSelector((state) => state.UI);
+  const user = useSelector((state) => state.user);
   const disptach = useDispatch();
   const date = dayjs(post.createdAt).format("DD-MM-YYYY HH:mm:ss");
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
 
   // Submit a Comment
   const handleSubmit = (e) => {
@@ -65,18 +69,37 @@ export default function PostCard({ post }) {
     }
   };
 
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <Card sx={{ mb: 5, mr: 5 }}>
       <CardHeader
-        avatar={<Avatar aria-label="recipe" src={noImg} />}
+        avatar={<Avatar aria-label="recipe" src={post.userImage} />}
         action={
-          <IconButton aria-label="settings">
+          <IconButton aria-label="settings" onClick={handleClick}>
             <MoreVertIcon />
           </IconButton>
         }
         title={post.userHandle}
         subheader={date}
       />
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+      >
+        {user.authenticated && post.userHandle === user.credentials.handle ? (
+          <DeletePost postId={post.postId} setAnchorEl={setAnchorEl} />
+        ) : (
+          <MenuItem sx={{ color: "grey" }}>Delete</MenuItem>
+        )}
+      </Menu>
       <CardMedia
         component="img"
         height="460"
