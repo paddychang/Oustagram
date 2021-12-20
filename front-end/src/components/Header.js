@@ -55,26 +55,31 @@ const Header = () => {
             <Link to="/">
               <img src={logo} alt="logo" className={classes.logo} />
             </Link>
-            <div className={classes.right}>
-              <Link to="/" className={classes.rightLink}>
-                {/* <IconButton
+            {authenticated && (
+              <div className={classes.right}>
+                <Link to="/" className={classes.rightLink}>
+                  {/* <IconButton
                 className={classes.rightLink}
                 onClick={handeHomeButton}
               > */}
-                <HomeIcon sx={{ fontSize: 35 }} className={classes.icon} />
-                {/* </IconButton> */}
-              </Link>
-              <NewPostDialog />
-              <Link to="/profile" className={classes.rightLink}>
-                <AccountBoxIcon
-                  sx={{ fontSize: 35 }}
-                  className={classes.icon}
-                />
-              </Link>
-              <IconButton className={classes.rightLink} onClick={handleLogout}>
-                <LogoutIcon sx={{ fontSize: 35 }} className={classes.icon} />
-              </IconButton>
-            </div>
+                  <HomeIcon sx={{ fontSize: 35 }} className={classes.icon} />
+                  {/* </IconButton> */}
+                </Link>
+                <NewPostDialog />
+                <Link to="/profile" className={classes.rightLink}>
+                  <AccountBoxIcon
+                    sx={{ fontSize: 35 }}
+                    className={classes.icon}
+                  />
+                </Link>
+                <IconButton
+                  className={classes.rightLink}
+                  onClick={handleLogout}
+                >
+                  <LogoutIcon sx={{ fontSize: 35 }} className={classes.icon} />
+                </IconButton>
+              </div>
+            )}
           </Toolbar>
         </Container>
       </AppBar>
