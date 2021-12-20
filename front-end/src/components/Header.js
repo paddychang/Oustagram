@@ -65,7 +65,7 @@ const Header = () => {
                 {/* </IconButton> */}
               </Link>
               <NewPostDialog />
-              <Link to="profile" className={classes.rightLink}>
+              <Link to="/profile" className={classes.rightLink}>
                 <AccountBoxIcon
                   sx={{ fontSize: 35 }}
                   className={classes.icon}

@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 // MUI
 import { Box, Divider, Typography, Avatar, IconButton } from "@mui/material";
+// Components
+import FollowersCard from "./FollowersCard";
 
 const ProfileCard = () => {
   const {
@@ -32,6 +34,7 @@ const ProfileCard = () => {
         </Box>
       </Box>
       <Divider>Followers</Divider>
+      <FollowersCard />
     </>
   );
 };

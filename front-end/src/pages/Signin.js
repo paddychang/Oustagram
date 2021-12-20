@@ -28,15 +28,12 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    dispatch(
-      loginUser(
-        {
-          email,
-          password,
-        },
-        navigate
-      )
-    );
+    e.preventDefault();
+    const userData = {
+      email,
+      password,
+    };
+    dispatch(loginUser(userData, navigate));
   };
 
   return (
@@ -92,19 +89,18 @@ const SignIn = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={handleSubmit}
             >
               Sign In
             </Button>
-            <Grid container>
-              <Grid item xs></Grid>
-              <Grid item>
-                <Link to="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
+          <Grid container>
+            <Grid item xs></Grid>
+            <Grid item>
+              <Link to="/signup" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>

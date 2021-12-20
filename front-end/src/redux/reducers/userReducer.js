@@ -6,6 +6,8 @@ import {
   LIKE_POST,
   UNLIKE_POST,
   MARK_NOTIFICATIONS_READ,
+  SET_UNFOLLOWED,
+  SET_FOLLOWED,
 } from "../types";
 
 const initialState = {
@@ -13,7 +15,8 @@ const initialState = {
   loading: false,
   credentials: {},
   likes: [],
-  notification: [],
+  notifications: [],
+  followers: [],
 };
 
 const userReducer = (state = initialState, { type, payload }) => {
@@ -52,6 +55,18 @@ const userReducer = (state = initialState, { type, payload }) => {
         ...state,
         likes: state.likes.filter((like) => like.screamId !== payload.screamId),
       };
+
+    case SET_FOLLOWED:
+      return {
+        ...state,
+        followers: [...state.followers, { ...payload }],
+      };
+    case SET_UNFOLLOWED:
+      return {
+        ...state,
+        followers: state.likes.filter((f) => f.follower !== payload.follower),
+      };
+
     case MARK_NOTIFICATIONS_READ:
       state.notifications.forEach((not) => (not.read = true));
       return {

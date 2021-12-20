@@ -28,6 +28,7 @@ const Profile = () => {
     credentials: { handle, createdAt, imageUrl, bio, website, location },
     loading,
     authenticated,
+    followers,
   } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
@@ -77,8 +78,11 @@ const Profile = () => {
               </Typography>
               <EditDetails />
             </Box>
+            <Typography variant="h3" sx={{ mb: 3, fontSize: 30 }}>
+              {`${followers.length} Friends`}
+            </Typography>
             {bio && (
-              <Typography variant="body2" sx={{ mb: 3 }}>
+              <Typography variant="body1" sx={{ mb: 3 }}>
                 {bio}
               </Typography>
             )}

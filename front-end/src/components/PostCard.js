@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
 // Redux
 import { submitComment } from "redux/actions/postsActions";
@@ -45,7 +45,6 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function PostCard({ post }) {
-  const classes = postCardStyles();
   const [expanded, setExpanded] = useState(false);
   const initialState = { comment: "", error: "" };
   const [state, setState] = useState(initialState);
@@ -96,15 +95,17 @@ export default function PostCard({ post }) {
         open={open}
         onClose={handleClose}
       >
-        <FollowButton
-          setAnchorEl={setAnchorEl}
-          follow={follow}
-          setFollow={setFollow}
-        />
-        {user.authenticated && post.userHandle === user.credentials.handle ? (
+        {post.userHandle !== user.credentials.handle && (
+          <FollowButton
+            setAnchorEl={setAnchorEl}
+            follow={follow}
+            setFollow={setFollow}
+            follower={post.userHandle}
+          />
+        )}
+
+        {user.authenticated && post.userHandle === user.credentials.handle && (
           <DeletePost postId={post.postId} setAnchorEl={setAnchorEl} />
-        ) : (
-          <MenuItem sx={{ color: "grey" }}>Delete</MenuItem>
         )}
       </Menu>
       <CardMedia

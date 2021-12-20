@@ -46,6 +46,7 @@ const postReducer = (state = initialState, action) => {
         ...state,
         post: action.payload,
       };
+
     case LIKE_POST:
     case UNLIKE_POST:
       index = state.posts.findIndex(

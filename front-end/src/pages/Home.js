@@ -53,7 +53,7 @@ const Home = () => {
           </Grid>
         </Container>
       ) : (
-        <Navigate replace to="signin" />
+        <Navigate replace to="/signin" />
       )}
     </div>
   );

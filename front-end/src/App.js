@@ -46,9 +46,10 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" exact element={<Home />} />
-            <Route path="profile" exact element={<Profile />} />
+            <Route path="/profile" exact element={<Profile />} />
+            {/* <Route exact path="/profile/:handle" element={} /> */}
             <Route
-              path="signin"
+              path="/signin"
               exact
               element={
                 <AuthRoute>
@@ -57,7 +58,7 @@ function App() {
               }
             />
             <Route
-              path="signup"
+              path="/signup"
               exact
               element={
                 <AuthRoute>

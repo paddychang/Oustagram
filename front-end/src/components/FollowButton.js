@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-
+import { setFollowed, setUnfollowed } from "redux/actions/userActions";
 // MUI
 import {
   Card,
@@ -12,13 +12,7 @@ import {
   DialogActions,
 } from "@mui/material";
 
-const FollowButton = ({
-  handle,
-  userImage,
-  setAnchorEl,
-  follow,
-  setFollow,
-}) => {
+const FollowButton = ({ follower, setAnchorEl, follow, setFollow }) => {
   const [open, setOpen] = useState(false);
   const dipatch = useDispatch();
 
@@ -30,11 +24,19 @@ const FollowButton = ({
     setAnchorEl(null);
   };
   const handelFollow = () => {
-    // dipatch(deletePost(postId));
-    setFollow(!follow);
+    dipatch(setFollowed(follower));
+    setFollow(true);
     setOpen(false);
     setAnchorEl(null);
   };
+
+  const handelUnfollow = () => {
+    dipatch(setUnfollowed(follower));
+    setFollow(false);
+    setOpen(false);
+    setAnchorEl(null);
+  };
+
   return (
     <>
       <MenuItem>
@@ -51,19 +53,19 @@ const FollowButton = ({
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         {follow ? (
           <>
-            <DialogTitle>{`Do you want to unfollow ${handle} ?`}</DialogTitle>
+            <DialogTitle>{`Do you want to unfollow ${follower} ?`}</DialogTitle>
             <DialogActions>
               <Button onClick={handleClose} color="info">
                 Cancel
               </Button>
-              <Button onClick={handelFollow} color="error">
+              <Button onClick={handelUnfollow} color="error">
                 Unfollow
               </Button>
             </DialogActions>
           </>
         ) : (
           <>
-            <DialogTitle>{`Do you want to follow ${handle} ?`}</DialogTitle>
+            <DialogTitle>{`Do you want to follow ${follower} ?`}</DialogTitle>
             <DialogActions>
               <Button onClick={handleClose} color="error">
                 Cancel
