@@ -1,14 +1,12 @@
-import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import axios from "axios";
 import { createBrowserHistory } from "history";
+import axios from "axios";
 import jwtDecode from "jwt-decode";
 // Redux
 import store from "redux/store";
-import { Provider, useSelector, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 import { getUserData, logoutUser } from "redux/actions/userActions";
 import { SET_AUTHENTICATED } from "redux/types";
-import { getAllPosts } from "redux/actions/postsActions";
 // MUI
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "assets/jss/theme";
@@ -47,7 +45,6 @@ function App() {
           <Routes>
             <Route path="/" exact element={<Home />} />
             <Route path="/profile" exact element={<Profile />} />
-            {/* <Route exact path="/profile/:handle" element={} /> */}
             <Route
               path="/signin"
               exact
