@@ -17,6 +17,7 @@ const initialState = {
   likes: [],
   notifications: [],
   followers: [],
+  posts: [],
 };
 
 const userReducer = (state = initialState, { type, payload }) => {

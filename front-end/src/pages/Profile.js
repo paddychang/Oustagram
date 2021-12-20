@@ -12,6 +12,7 @@ import {
   Avatar,
   Box,
   IconButton,
+  Divider,
 } from "@mui/material";
 // Icons
 import LocationOn from "@mui/icons-material/LocationOn";
@@ -22,6 +23,8 @@ import KeyboardReturn from "@mui/icons-material/KeyboardReturn";
 //Redux
 import { logoutUser, uploadImage } from "redux/actions/userActions";
 import { useSelector, useDispatch } from "react-redux";
+// Components
+import ProfileImageList from "components/ProfileImageList";
 
 const Profile = () => {
   const {
@@ -29,8 +32,11 @@ const Profile = () => {
     loading,
     authenticated,
     followers,
+    posts,
   } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+
+  console.log(posts);
 
   const handleImageChange = (event) => {
     const image = event.target.files[0];
@@ -78,15 +84,9 @@ const Profile = () => {
               </Typography>
               <EditDetails />
             </Box>
-            <Typography variant="h3" sx={{ mb: 3, fontSize: 30 }}>
+            <Typography sx={{ mb: 3, fontSize: 24 }}>
               {`${followers.length} Friends`}
             </Typography>
-            {bio && (
-              <Typography variant="body1" sx={{ mb: 3 }}>
-                {bio}
-              </Typography>
-            )}
-
             {location && (
               <Typography variant="h3" sx={{ mb: 1 }}>
                 {`Location: ${location}`}
@@ -102,14 +102,14 @@ const Profile = () => {
                 </Typography>
               </Fragment>
             )}
-            <hr />
-
             <Typography variant="h3" sx={{ mb: 3 }}>
               Joined at {dayjs(createdAt).format("MMM YYYY")}
             </Typography>
+            {bio && <Typography sx={{ mb: 3, fontSize: 16 }}>{bio}</Typography>}
           </Box>
         </Box>
-        <hr />
+        <Divider sx={{ fontSize: 26 }}>Your Posts</Divider>
+        <ProfileImageList posts={posts} />
       </Container>
     ) : (
       <Container maxWidth="lg" sx={{ mt: 5 }}>
