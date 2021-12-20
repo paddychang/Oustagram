@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { setFollowed, setUnfollowed } from "redux/actions/userActions";
 // MUI
 import {
@@ -12,9 +12,20 @@ import {
   DialogActions,
 } from "@mui/material";
 
-const FollowButton = ({ follower, setAnchorEl, follow, setFollow }) => {
+const FollowButton = ({
+  follower,
+  setAnchorEl,
+  follow,
+  setFollow,
+  userHandle,
+}) => {
   const [open, setOpen] = useState(false);
   const dipatch = useDispatch();
+  const followers = useSelector((state) => state.user.followers);
+
+  useEffect(() => {
+    setFollow(followers.some((el) => el.userHandle !== userHandle));
+  }, []);
 
   const handleOpen = () => {
     setOpen(true);

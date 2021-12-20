@@ -101,6 +101,7 @@ export default function PostCard({ post }) {
             follow={follow}
             setFollow={setFollow}
             follower={post.userHandle}
+            userHandle={post.userHandle}
           />
         )}
 
