@@ -5,7 +5,7 @@ import { loginUser } from "redux/actions/userActions";
 // MUI
 import CssBaseline from "@mui/material/CssBaseline";
 
-import Avatar from "@mui/material/Avatar";
+import { Avatar } from "@mui/material";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
@@ -15,7 +15,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 // Assets
 import icon from "assets/img/icon192.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // Components
 import Copyright from "components/Copyright";
 
@@ -26,6 +26,7 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const errors = useSelector((state) => state.UI.errors);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -72,6 +73,8 @@ const SignIn = () => {
               autoComplete="email"
               autoFocus
               onChange={(e) => setEmail(e.target.value)}
+              error={errors && "email" in errors ? true : false}
+              helperText={errors && "email" in errors && errors.email}
             />
             <TextField
               margin="normal"
@@ -83,7 +86,12 @@ const SignIn = () => {
               id="password"
               autoComplete="current-password"
               onChange={(e) => setPassword(e.target.value)}
+              error={errors && "password" in errors ? true : false}
+              helperText={errors && "password" in errors && errors.password}
             />
+            {errors && "general" in errors && (
+              <Typography color="error">{errors.general}</Typography>
+            )}
             <Button
               type="submit"
               fullWidth
@@ -93,6 +101,7 @@ const SignIn = () => {
               Sign In
             </Button>
           </Box>
+
           <Grid container>
             <Grid item xs></Grid>
             <Grid item>
