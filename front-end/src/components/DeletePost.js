@@ -1,3 +1,4 @@
+import { useState } from "react";
 // MUI Stuff
 import {
   Button,
@@ -9,7 +10,6 @@ import {
 } from "@mui/material";
 // Redux
 import { deletePost } from "redux/actions/postsActions";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 const DeletePost = ({ postId, setAnchorEl }) => {
@@ -35,7 +35,6 @@ const DeletePost = ({ postId, setAnchorEl }) => {
           Delete
         </Button>
       </MenuItem>
-
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <DialogTitle>Are you sure you want to delete this post ?</DialogTitle>
         <DialogActions>

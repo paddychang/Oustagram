@@ -31,6 +31,7 @@ import PostDialog from "./PostDialog";
 import CommentInput from "components/CommentInput";
 import LikeButton from "components/LikeButton";
 import DeletePost from "components/DeletePost";
+import FollowButton from "./FollowButton";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -54,6 +55,7 @@ export default function PostCard({ post }) {
   const date = dayjs(post.createdAt).format("DD-MM-YYYY HH:mm:ss");
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const [follow, setFollow] = useState(false);
 
   // Submit a Comment
   const handleSubmit = (e) => {
@@ -94,6 +96,11 @@ export default function PostCard({ post }) {
         open={open}
         onClose={handleClose}
       >
+        <FollowButton
+          setAnchorEl={setAnchorEl}
+          follow={follow}
+          setFollow={setFollow}
+        />
         {user.authenticated && post.userHandle === user.credentials.handle ? (
           <DeletePost postId={post.postId} setAnchorEl={setAnchorEl} />
         ) : (

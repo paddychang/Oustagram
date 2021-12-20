@@ -25,15 +25,18 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const userData = {
-      email,
-      password,
-    };
-    dispatch(loginUser(userData, navigate));
+    dispatch(
+      loginUser(
+        {
+          email,
+          password,
+        },
+        navigate
+      )
+    );
   };
 
   return (
@@ -89,15 +92,12 @@ const SignIn = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={handleSubmit}
             >
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
-                {/* <Link to="/#" variant="body2">
-                  Forgot password?
-                </Link> */}
-              </Grid>
+              <Grid item xs></Grid>
               <Grid item>
                 <Link to="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
