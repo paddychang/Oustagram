@@ -150,7 +150,7 @@ const PostDialog = ({ postId, state, setState, userHandle, handleSubmit }) => {
                       <UserAvatar
                         key={idx}
                         userImage={comment.userImage}
-                        handle={comment.useHandle}
+                        userHandle={comment.userHandle}
                         comment={comment.comment}
                       />
                     ))

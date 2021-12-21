@@ -1,5 +1,4 @@
 // MUI
-import IconButton from "@mui/material/IconButton";
 import { Typography, Box, Avatar } from "@mui/material";
 
 const UserAvatar = ({ userImage, userHandle, comment }) => {
@@ -12,18 +11,16 @@ const UserAvatar = ({ userImage, userHandle, comment }) => {
         alignItems: "center",
       }}
     >
-      <IconButton>
-        <Avatar
-          aria-label="recipe"
-          src={userImage}
-          sx={{ width: 50, height: 50 }}
-        />
-      </IconButton>
+      <Avatar
+        aria-label="recipe"
+        src={userImage}
+        sx={{ width: 60, height: 60, mt: 1 }}
+      />
       <Box component="div" sx={{ ml: 3 }}>
-        <Typography variant="h1" sx={{ mb: 0.5 }}>
+        <Typography variant="h3" sx={{ mb: 1 }}>
           {userHandle}
         </Typography>
-        <Typography variant="h3" color="gray">
+        <Typography variant="h4" color="gray" sx={{ ml: 1 }}>
           {comment}
         </Typography>
       </Box>
