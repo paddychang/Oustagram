@@ -2,6 +2,8 @@
 
 ## This is the final project for GA React development online course.
 
+### Only use React Hook, no Class compoents.
+
 ## Deployment
 
 - Firebase Hosting
