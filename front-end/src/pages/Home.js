@@ -4,10 +4,11 @@ import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "redux/actions/postsActions";
 // MUI
-import { Grid, Container, Box } from "@mui/material";
+import { Grid, Container, Box, Typography } from "@mui/material";
 // Components
 import PostCard from "components/PostCard";
 import ProfileCard from "components/ProfileCard";
+import PostCardSkeleton from "components/PostCardSkeleton";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const Home = () => {
     const getData = async () => {
       dispatch(getAllPosts());
     };
+
     getData();
     // eslint-disable-next-line
   }, []);
@@ -34,10 +36,15 @@ const Home = () => {
                     <PostCard key={post.postId} post={post} />
                   ))
                 ) : (
-                  <h2>No Posts....</h2>
+                  <Typography variant="h3" color="secondary.main">
+                    No Posts yet....
+                  </Typography>
                 )
               ) : (
-                <h2>Loading....</h2>
+                <>
+                  <PostCardSkeleton />
+                  <PostCardSkeleton />
+                </>
               )}
             </Grid>
             <Grid item sm={12} md={4}>

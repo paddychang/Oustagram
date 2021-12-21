@@ -141,16 +141,20 @@ const PostDialog = ({ state, setState, postId, userHandle, handleSubmit }) => {
                     overflow: "auto",
                   }}
                 >
-                  {post.comments.length > 0
-                    ? post.comments.map((comment, idx) => (
-                        <UserAvatar
-                          key={idx}
-                          userImage={comment.userImage}
-                          handle={comment.useHandle}
-                          comment={comment.comment}
-                        />
-                      ))
-                    : "No Comments"}
+                  {post.comments.length > 0 ? (
+                    post.comments.map((comment, idx) => (
+                      <UserAvatar
+                        key={idx}
+                        userImage={comment.userImage}
+                        handle={comment.useHandle}
+                        comment={comment.comment}
+                      />
+                    ))
+                  ) : (
+                    <Typography variant="h3" sx={{ mt: 3 }}>
+                      You do not have Comments.
+                    </Typography>
+                  )}
                 </Box>
                 <CommentInput
                   state={state}
