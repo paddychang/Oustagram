@@ -26,7 +26,7 @@ export const getAllPosts = () => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((err) => {
+    .catch(() => {
       dispatch({
         type: SET_POSTS,
         payload: [],
@@ -50,7 +50,6 @@ export const getPost = (postId) => (dispatch) => {
 
 export const createPost = (newPost, file) => (dispatch) => {
   dispatch({ type: LOADING_UI });
-  console.log("file-test", file);
   axios
     .post("/post", newPost)
     .then((res) => {
@@ -62,10 +61,12 @@ export const createPost = (newPost, file) => (dispatch) => {
       return res.data.postId;
     })
     .then((postId) => {
-      console.log(postId, file);
       uploadImage(postId, file).then((imageUrl) => {
         dispatch({ type: UPDATA_POST_IMAGE, payload: { postId, imageUrl } });
       });
+    })
+    .then(() => {
+      dispatch({ type: STOP_LOADING_UI });
     })
     .catch((err) => {
       dispatch({
@@ -149,6 +150,9 @@ export const getUserData = (userHandle) => (dispatch) => {
         type: SET_POSTS,
         payload: res.data.posts,
       });
+    })
+    .then(() => {
+      dispatch({ type: STOP_LOADING_UI });
     })
     .catch(() => {
       dispatch({

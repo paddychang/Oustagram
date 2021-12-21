@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 // Redux
 import { useSelector } from "react-redux";
 // MUI
-import { Box, Divider, Typography, Avatar, IconButton } from "@mui/material";
+import { Box, Divider, Typography, Avatar } from "@mui/material";
 // Components
 import FollowersCard from "./FollowersCard";
 import Copyright from "components/Copyright";
@@ -10,8 +10,6 @@ import Copyright from "components/Copyright";
 const ProfileCard = () => {
   const {
     credentials: { handle, imageUrl, location },
-    loading,
-    authenticated,
   } = useSelector((state) => state.user);
 
   return (

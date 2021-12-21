@@ -24,7 +24,7 @@ const theme = createTheme();
 
 export default function SignUp() {
   const dispatch = useDispatch();
-  const { loading, errors } = useSelector((state) => state.UI);
+  const { errors } = useSelector((state) => state.UI);
   let navigate = useNavigate();
   const [newUser, setNewUser] = useState({
     email: "",

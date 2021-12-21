@@ -1,21 +1,13 @@
 // MUI
 import {
   Card,
-  Menu,
   CardHeader,
-  CardMedia,
   CardContent,
-  CardActions,
-  Avatar,
   IconButton,
-  Typography,
   Skeleton,
   Stack,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-// Assets
-import noImg from "assets/img/no-img.png";
-import Loading from "assets/img/loading.jpg";
 
 export default function PostCardSkeleton() {
   return (

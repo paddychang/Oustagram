@@ -27,7 +27,6 @@ const PostDialog = ({ state, setState, postId, userHandle, handleSubmit }) => {
   });
   const dispatch = useDispatch();
   const post = useSelector((state) => state.posts.post);
-  const { loading } = useSelector((state) => state.UI.loading);
 
   useEffect(() => {
     const fetchData = async () => {

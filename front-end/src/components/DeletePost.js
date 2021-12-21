@@ -37,10 +37,10 @@ const DeletePost = ({ postId, setAnchorEl }) => {
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <DialogTitle>Are you sure you want to delete this post ?</DialogTitle>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleClose} color="info">
             Cancel
           </Button>
-          <Button onClick={handleDeletePost} color="secondary">
+          <Button onClick={handleDeletePost} color="error">
             Delete
           </Button>
         </DialogActions>
