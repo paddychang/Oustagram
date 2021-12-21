@@ -19,8 +19,8 @@
 
 ## Installation
 
-> yarn install
+> #yarn install
 
 ## Execute
 
-> yarn start
+> #yarn start
