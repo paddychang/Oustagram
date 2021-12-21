@@ -23,7 +23,7 @@ import DeletePost from "components/DeletePost";
 import FollowButton from "./FollowButton";
 import PostDialog from "./PostDialog";
 
-export default function PostCard({ post }) {
+export default function PostCard({ postId, post }) {
   // States
   const initialState = { comment: "", error: "" };
   const [state, setState] = useState(initialState);
@@ -99,11 +99,11 @@ export default function PostCard({ post }) {
       <CardActions disableSpacing>
         <LikeButton postId={post.postId} />
         <PostDialog
-          postId={post.postId}
           userHandle={post.userHandle}
           state={state}
           setState={setState}
           handleSubmit={handleSubmit}
+          postId={postId}
         />
       </CardActions>
       <Typography variant="h5" color="secondary.light" sx={{ pl: 2 }}>

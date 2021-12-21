@@ -32,7 +32,11 @@ const Home = () => {
               {!loading ? (
                 posts.length > 0 ? (
                   posts.map((post) => (
-                    <PostCard key={post.postId} post={post} />
+                    <PostCard
+                      key={post.postId}
+                      post={post}
+                      postId={post.postId}
+                    />
                   ))
                 ) : (
                   <Typography variant="h3" color="secondary.main">

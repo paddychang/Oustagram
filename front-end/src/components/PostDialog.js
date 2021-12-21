@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import UserAvatar from "components/UserAvatar";
 import CommentInput from "components/CommentInput";
 
-const PostDialog = ({ state, setState, postId, userHandle, handleSubmit }) => {
+const PostDialog = ({ postId, state, setState, userHandle, handleSubmit }) => {
   const [path, setPath] = useState({
     open: false,
     oldPath: "",
@@ -34,7 +34,7 @@ const PostDialog = ({ state, setState, postId, userHandle, handleSubmit }) => {
     };
     fetchData();
     // eslint-disable-next-line
-  }, [path.open]);
+  }, [path.newPath]);
 
   const handleOpen = () => {
     let oldPath = window.location.pathname;
@@ -42,7 +42,12 @@ const PostDialog = ({ state, setState, postId, userHandle, handleSubmit }) => {
 
     if (oldPath === newPath) oldPath = `/users/${userHandle}`;
     window.history.pushState(null, null, newPath);
-    setPath({ open: true, oldPath, newPath });
+    const waitLoading = () => {
+      setTimeout(function () {
+        setPath({ open: true, oldPath, newPath });
+      }, 1000);
+    };
+    waitLoading();
   };
 
   const handleClose = () => {
@@ -62,7 +67,7 @@ const PostDialog = ({ state, setState, postId, userHandle, handleSubmit }) => {
             <Box
               sx={{
                 width: 600,
-                height: 1000,
+                height: 800,
                 background: "#000",
                 display: "flex",
               }}
@@ -83,7 +88,7 @@ const PostDialog = ({ state, setState, postId, userHandle, handleSubmit }) => {
             <Box
               sx={{
                 width: 720,
-                height: 1000,
+                height: 800,
               }}
             >
               <DialogContent dividers>
@@ -128,7 +133,7 @@ const PostDialog = ({ state, setState, postId, userHandle, handleSubmit }) => {
                   flexDirection: "column",
                   justifyContent: "space-between",
                   alignItems: "flex-start",
-                  maxHeight: 940,
+                  maxHeight: 700,
                 }}
               >
                 <Box
@@ -136,7 +141,7 @@ const PostDialog = ({ state, setState, postId, userHandle, handleSubmit }) => {
                   sx={{
                     pl: 3,
                     width: 1,
-                    height: 830,
+                    height: 600,
                     overflow: "auto",
                   }}
                 >
