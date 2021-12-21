@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 // Redux
 import { useSelector } from "react-redux";
@@ -6,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Box, Divider, Typography, Avatar, IconButton } from "@mui/material";
 // Components
 import FollowersCard from "./FollowersCard";
+import Copyright from "components/Copyright";
 
 const ProfileCard = () => {
   const {
@@ -35,6 +35,7 @@ const ProfileCard = () => {
       </Box>
       <Divider>Followers</Divider>
       <FollowersCard />
+      <Copyright />
     </>
   );
 };

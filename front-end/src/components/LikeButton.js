@@ -1,14 +1,11 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 // Icons
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import { Button, IconButton } from "@mui/material";
-// REdux
+// Redux
+import { useSelector, useDispatch } from "react-redux";
 import { likePost, unlikePost } from "redux/actions/postsActions";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { useEffect } from "react";
 
 const LikeButton = ({ postId }) => {
   const user = useSelector((state) => state.user);
@@ -19,6 +16,7 @@ const LikeButton = ({ postId }) => {
   useEffect(() => {
     if (user.likes && user.likes.find((like) => like.postId === postId))
       setCheck(true);
+    // eslint-disable-next-line
   }, [check]);
 
   const handleLikePost = () => {

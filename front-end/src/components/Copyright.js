@@ -7,8 +7,9 @@ const Copyright = (props) => {
       color="text.secondary"
       align="center"
       {...props}
+      sx={{ mt: 5 }}
     >
-      {`Copyright © GA React Final Project by Paddy ${new Date().getFullYear()}.`}
+      {`Copyright © GA React Final Projectin ${new Date().getFullYear()}  by Paddy.`}
     </Typography>
   );
 };

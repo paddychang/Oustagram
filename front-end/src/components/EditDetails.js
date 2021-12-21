@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import { useState } from "react";
 // Redux stuff
 import { editUserDetails } from "redux/actions/userActions";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,24 +10,13 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Typography,
-  Paper,
   IconButton,
   Box,
 } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-
 // Icons
 import EditIcon from "@mui/icons-material/Edit";
 
-const useStyles = makeStyles({
-  button: {
-    float: "right",
-  },
-});
-
 const EditDetails = () => {
-  const classes = useStyles();
   const [state, setState] = useState({
     bio: "",
     website: "",
@@ -65,7 +54,7 @@ const EditDetails = () => {
   };
 
   return (
-    <Fragment>
+    <>
       <IconButton aria-label="chat" onClick={handleOpen}>
         <EditIcon color="info" />
       </IconButton>
@@ -80,7 +69,6 @@ const EditDetails = () => {
               multiline
               rows="3"
               placeholder="A short bio about yourself"
-              className={classes.textField}
               value={state.bio}
               onChange={handleChange}
               fullWidth
@@ -90,7 +78,6 @@ const EditDetails = () => {
               tpye="text"
               label="Website"
               placeholder="Your personal/professinal website"
-              className={classes.textField}
               value={state.website}
               onChange={handleChange}
               fullWidth
@@ -100,7 +87,6 @@ const EditDetails = () => {
               tpye="text"
               label="Location"
               placeholder="Where you live"
-              className={classes.textField}
               value={state.location}
               onChange={handleChange}
               fullWidth
@@ -116,7 +102,7 @@ const EditDetails = () => {
           </Button>
         </DialogActions>
       </Dialog>
-    </Fragment>
+    </>
   );
 };
 

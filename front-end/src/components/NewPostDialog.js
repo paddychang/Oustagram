@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 // MUI
 import {
   Button,
@@ -10,14 +10,13 @@ import {
   Box,
 } from "@mui/material";
 import AddBoxIcon from "@mui/icons-material/AddBox";
-
 import CloseIcon from "@mui/icons-material/Close";
 // Redux stuff
 import { useDispatch, useSelector } from "react-redux";
 import { createPost, clearErrors } from "redux/actions/postsActions";
 import DragDrop from "util/DragDrop";
 
-const NewPostDialog = (props) => {
+const NewPostDialog = () => {
   const UI = useSelector((state) => state.UI);
   const dispatch = useDispatch();
   const initialState = {
@@ -106,12 +105,6 @@ const NewPostDialog = (props) => {
               disabled={UI.loading}
             >
               Post
-              {/* {UI.loading && (
-                <CircularProgress
-                  size={30}
-                  className={classes.progressSpinner}
-                />
-              )} */}
             </Button>
           </Box>
         </DialogContent>

@@ -1,15 +1,6 @@
 // MUI
 import IconButton from "@mui/material/IconButton";
-import {
-  Grid,
-  Typography,
-  Button,
-  Dialog,
-  DialogContent,
-  Box,
-  Container,
-  Avatar,
-} from "@mui/material";
+import { Typography, Box, Avatar } from "@mui/material";
 
 const UserAvatar = ({ userImage, userHandle, comment }) => {
   return (

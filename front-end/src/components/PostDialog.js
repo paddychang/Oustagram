@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import dayjs from "dayjs";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 // MUI Stuff
 import {
   Grid,
@@ -9,31 +7,19 @@ import {
   Dialog,
   DialogContent,
   Box,
-  Container,
   Avatar,
-  TextField,
+  IconButton,
 } from "@mui/material";
-import CircularProgress from "@mui/material/CircularProgress";
 import CloseIcon from "@mui/icons-material/Close";
-import UnfoldMore from "@mui/icons-material/UnfoldMore";
-import ChatIcon from "@mui/icons-material/Chat";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-import IconButton from "@mui/material/IconButton";
-import SendIcon from "@mui/icons-material/Send";
-
 // Redux stuff
 import { getPost, clearErrors } from "redux/actions/postsActions";
 import { useDispatch, useSelector } from "react-redux";
-// Asseets
-import postDialogStyles from "assets/jss/components/postDialogStyles";
-// // Componetns
-// import Comments from "./Comments";
-// import CommentForm from "./CommentForm";
+// Componetns
 import UserAvatar from "components/UserAvatar";
 import CommentInput from "components/CommentInput";
 
 const PostDialog = ({ state, setState, postId, userHandle, handleSubmit }) => {
-  const classes = postDialogStyles();
   const [path, setPath] = useState({
     open: false,
     oldPath: "",
@@ -48,17 +34,15 @@ const PostDialog = ({ state, setState, postId, userHandle, handleSubmit }) => {
       dispatch(getPost(postId));
     };
     fetchData();
+    // eslint-disable-next-line
   }, [path.open]);
 
   const handleOpen = () => {
     let oldPath = window.location.pathname;
-
     const newPath = `/users/${userHandle}/post/${postId}`;
 
     if (oldPath === newPath) oldPath = `/users/${userHandle}`;
-
     window.history.pushState(null, null, newPath);
-
     setPath({ open: true, oldPath, newPath });
   };
 
@@ -87,7 +71,12 @@ const PostDialog = ({ state, setState, postId, userHandle, handleSubmit }) => {
               <img
                 src={post.imageUrl}
                 alt="post images"
-                className={classes.images}
+                style={{
+                  hetigh: "auto",
+                  maxWidth: 600,
+                  objectFit: "contain",
+                  flexGrow: 1,
+                }}
               />
             </Box>
           </Grid>
@@ -128,21 +117,6 @@ const PostDialog = ({ state, setState, postId, userHandle, handleSubmit }) => {
                       </Typography>
                     </Box>
                   </Box>
-                  {/* <IconButton>
-                      <Avatar
-                        aria-label="recipe"
-                        src={post.userImage}
-                        sx={{ width: 50, height: 50, mr: 2 }}
-                      />
-                    </IconButton>
-                    <div>
-                      <Typography variant="h1" sx={{ mb: 0.5 }}>
-                        name
-                      </Typography>
-                      <Typography variant="h3" color="gray">
-                        Melbourne
-                      </Typography>
-                    </div> */}
                   <Button onClick={handleClose}>
                     <CloseIcon color="info" fontSize="medium" />
                   </Button>

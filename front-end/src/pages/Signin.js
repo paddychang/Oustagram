@@ -3,15 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 // Redux
 import { loginUser } from "redux/actions/userActions";
 // MUI
-import CssBaseline from "@mui/material/CssBaseline";
-
-import { Avatar } from "@mui/material";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
+import {
+  CssBaseline,
+  Avatar,
+  Button,
+  TextField,
+  Grid,
+  Box,
+  Typography,
+  Container,
+} from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 // Assets
 import icon from "assets/img/icon192.png";

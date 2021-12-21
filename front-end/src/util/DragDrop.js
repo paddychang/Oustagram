@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 
 const fileTypes = ["JPG", "JPEG", "PNG", "GIF"];

@@ -4,16 +4,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signupUser } from "redux/actions/userActions";
 // MUI
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  TextField,
+  Grid,
+  Box,
+  Typography,
+  Container,
+} from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import CircularProgress from "@mui/material/CircularProgress";
 // Assets
 import icon from "assets/img/icon192.png";
 // Components
@@ -136,6 +137,9 @@ export default function SignUp() {
                 />
               </Grid>
             </Grid>
+            {errors && "general" in errors && (
+              <Typography color="error">{errors.general}</Typography>
+            )}
             <Button
               type="submit"
               fullWidth
@@ -143,7 +147,6 @@ export default function SignUp() {
               sx={{ mt: 3, mb: 2 }}
             >
               Sign Up
-              {errors && "general" in errors && <CircularProgress size={30} />}
             </Button>
 
             <Grid container justifyContent="flex-end">

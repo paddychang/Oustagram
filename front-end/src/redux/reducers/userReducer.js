@@ -5,7 +5,6 @@ import {
   LOADING_USER,
   LIKE_POST,
   UNLIKE_POST,
-  MARK_NOTIFICATIONS_READ,
   SET_UNFOLLOWED,
   SET_FOLLOWED,
 } from "../types";
@@ -66,12 +65,6 @@ const userReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         followers: state.likes.filter((f) => f.follower !== payload.follower),
-      };
-
-    case MARK_NOTIFICATIONS_READ:
-      state.notifications.forEach((not) => (not.read = true));
-      return {
-        ...state,
       };
     default:
       return state;

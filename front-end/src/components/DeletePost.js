@@ -5,7 +5,6 @@ import {
   Dialog,
   DialogTitle,
   DialogActions,
-  DeleteOutline,
   MenuItem,
 } from "@mui/material";
 // Redux

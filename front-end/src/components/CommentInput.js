@@ -1,15 +1,5 @@
-import {
-  Grid,
-  Typography,
-  Button,
-  Dialog,
-  DialogContent,
-  Box,
-  Container,
-  Avatar,
-  TextField,
-  IconButton,
-} from "@mui/material";
+// MUI
+import { Box, TextField, IconButton } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 
 const CommentInput = ({ state, setState, handleSubmit }) => {

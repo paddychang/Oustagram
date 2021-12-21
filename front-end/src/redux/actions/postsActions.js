@@ -16,7 +16,6 @@ import {
 } from "../types";
 import axios from "axios";
 
-// Get all posts
 export const getAllPosts = () => (dispatch) => {
   dispatch({ type: LOADING_DATA });
   axios
@@ -49,7 +48,6 @@ export const getPost = (postId) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-// Post a post
 export const createPost = (newPost, file) => (dispatch) => {
   dispatch({ type: LOADING_UI });
   console.log("file-test", file);
@@ -89,7 +87,6 @@ async function uploadImage(postId, file) {
   return imageUrl;
 }
 
-// Like a post
 export const likePost = (postId) => (dispatch) => {
   axios
     .get(`/post/${postId}/like`)
@@ -101,7 +98,7 @@ export const likePost = (postId) => (dispatch) => {
     })
     .catch((err) => console.log(err));
 };
-// Unlike a post
+
 export const unlikePost = (postId) => (dispatch) => {
   axios
     .get(`/post/${postId}/unlike`)
@@ -113,7 +110,7 @@ export const unlikePost = (postId) => (dispatch) => {
     })
     .catch((err) => console.log(err));
 };
-// Submit a comment
+
 export const submitComment = (postId, commentData) => (dispatch) => {
   axios
     .post(`/post/${postId}/comment`, commentData)
@@ -132,6 +129,7 @@ export const submitComment = (postId, commentData) => (dispatch) => {
       });
     });
 };
+
 export const deletePost = (postId) => (dispatch) => {
   axios
     .delete(`/post/${postId}`)

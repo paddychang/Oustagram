@@ -1,30 +1,21 @@
-import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
-import EditDetails from "./EditDetails";
-// import ProfileSkeleton from "pages/skeletons/ProfileSkeleton";
 // MUI stuff
 import {
   Button,
   Typography,
-  Paper,
   Container,
   Avatar,
   Box,
   IconButton,
   Divider,
 } from "@mui/material";
-// Icons
-import LocationOn from "@mui/icons-material/LocationOn";
-import LinkIcon from "@mui/icons-material/Link";
-import CalendarToday from "@mui/icons-material/CalendarToday";
-import EditIcon from "@mui/icons-material/Edit";
-import KeyboardReturn from "@mui/icons-material/KeyboardReturn";
 //Redux
-import { logoutUser, uploadImage } from "redux/actions/userActions";
+import { uploadImage } from "redux/actions/userActions";
 import { useSelector, useDispatch } from "react-redux";
 // Components
 import ProfileImageList from "components/ProfileImageList";
+import EditDetails from "components/EditDetails";
 
 const Profile = () => {
   const {
@@ -36,20 +27,16 @@ const Profile = () => {
   } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  console.log(posts);
-
   const handleImageChange = (event) => {
     const image = event.target.files[0];
     const formData = new FormData();
     formData.append("image", image, image.name);
     dispatch(uploadImage(formData));
   };
+
   const handleEditPicture = () => {
     const fileInput = document.getElementById("imageInput");
     fileInput.click();
-  };
-  const handleLogout = () => {
-    dispatch(logoutUser());
   };
 
   let profileMarkup = !loading ? (
@@ -93,14 +80,14 @@ const Profile = () => {
               </Typography>
             )}
             {website && (
-              <Fragment>
+              <>
                 <Typography variant="h3" sx={{ mb: 1 }}>
                   Website:{" "}
-                  <a href={website} target="_blank">
+                  <a href={website} target="_blank" rel="noopener noreferrer">
                     {website}
                   </a>
                 </Typography>
-              </Fragment>
+              </>
             )}
             <Typography variant="h3" sx={{ mb: 3 }}>
               Joined at {dayjs(createdAt).format("MMM YYYY")}

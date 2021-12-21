@@ -1,16 +1,8 @@
-import { Link } from "react-router-dom";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import { setUnfollowed } from "redux/actions/userActions";
 // MUI
-import {
-  Box,
-  Divider,
-  Typography,
-  Avatar,
-  IconButton,
-  Button,
-} from "@mui/material";
+import { Box, Typography, Avatar, Button } from "@mui/material";
 
 const FollowersCard = () => {
   const followers = useSelector((state) => state.user.followers);
@@ -28,13 +20,11 @@ const FollowersCard = () => {
               key={data.userHandle}
               sx={{ display: "flex", alignItems: "center", mb: 1, mt: 3 }}
             >
-              {/* <Link to="profile"> */}
               <Avatar
                 aria-label="recipe"
                 src={data.followerImage}
                 sx={{ width: 60, height: 60 }}
               />
-              {/* </Link> */}
               <Box
                 component="div"
                 sx={{

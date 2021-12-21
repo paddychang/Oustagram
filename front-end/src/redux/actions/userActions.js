@@ -5,12 +5,25 @@ import {
   LOADING_UI,
   SET_UNAUTHENTICATED,
   LOADING_USER,
-  MARK_NOTIFICATIONS_READ,
   SET_FOLLOWED,
   SET_UNFOLLOWED,
+  SET_AUTHENTICATED,
 } from "../types";
 import axios from "axios";
-import { SET_AUTHENTICATED } from "redux/types";
+
+export const getUserData = () => (dispatch) => {
+  dispatch({ type: LOADING_USER });
+  axios
+    .get("/user")
+    .then((res) => {
+      console.log(res.data);
+      dispatch({
+        type: SET_USER,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
 
 export const loginUser = (userData, navigate) => (dispatch) => {
   dispatch({ type: LOADING_UI });
@@ -60,20 +73,6 @@ export const logoutUser = () => (dispatch) => {
   dispatch({ type: SET_UNAUTHENTICATED });
 };
 
-export const getUserData = () => (dispatch) => {
-  dispatch({ type: LOADING_USER });
-  axios
-    .get("/user")
-    .then((res) => {
-      console.log(res.data);
-      dispatch({
-        type: SET_USER,
-        payload: res.data,
-      });
-    })
-    .catch((err) => console.log(err));
-};
-
 export const uploadImage = (formData) => (dispatch) => {
   dispatch({ type: LOADING_USER });
   axios
@@ -115,17 +114,6 @@ export const setUnfollowed = (follower) => (dispatch) => {
     .then((res) => {
       console.log("return data ", res.data);
       dispatch({ type: SET_UNFOLLOWED, payload: follower });
-    })
-    .catch((err) => console.log(err));
-};
-
-export const markNotificationsRead = (notificationIds) => (dispatch) => {
-  axios
-    .post("/notifications", notificationIds)
-    .then(() => {
-      dispatch({
-        type: MARK_NOTIFICATIONS_READ,
-      });
     })
     .catch((err) => console.log(err));
 };

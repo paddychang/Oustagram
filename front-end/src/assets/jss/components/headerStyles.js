@@ -1,5 +1,4 @@
 import { makeStyles } from "@mui/styles";
-import { gray } from "@mui/material/colors";
 
 const headerStyles = makeStyles((theme) => ({
   appBar: {

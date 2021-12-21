@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
+// Redux
 import { useDispatch, useSelector } from "react-redux";
 import { setFollowed, setUnfollowed } from "redux/actions/userActions";
 // MUI
 import {
-  Card,
-  Menu,
   MenuItem,
   Button,
   Dialog,
@@ -25,6 +24,7 @@ const FollowButton = ({
 
   useEffect(() => {
     setFollow(followers.some((el) => el.userHandle !== userHandle));
+    // eslint-disable-next-line
   }, []);
 
   const handleOpen = () => {

@@ -1,23 +1,15 @@
 import { useEffect } from "react";
-import jwtDecode from "jwt-decode";
-import axios from "axios";
-import { useLocation, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "redux/actions/postsActions";
-import { getUserData, logoutUser } from "redux/actions/userActions";
-import { SET_AUTHENTICATED } from "redux/types";
-
 // MUI
-import { Grid, Container } from "@mui/material";
-import homeStyles from "assets/jss/pages/homeStyles";
+import { Grid, Container, Box } from "@mui/material";
 // Components
 import PostCard from "components/PostCard";
 import ProfileCard from "components/ProfileCard";
-import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const classes = homeStyles();
   const dispatch = useDispatch();
   const { posts, loading } = useSelector((state) => state.posts);
   const { authenticated } = useSelector((state) => state.user);
@@ -27,10 +19,11 @@ const Home = () => {
       dispatch(getAllPosts());
     };
     getData();
+    // eslint-disable-next-line
   }, []);
 
   return (
-    <div className={classes.home}>
+    <Box component="div" sx={{ marginTop: 5, bgcolor: "secondary.light" }}>
       {authenticated ? (
         <Container maxWidth="lg">
           <Grid container pacing={2}>
@@ -55,7 +48,7 @@ const Home = () => {
       ) : (
         <Navigate replace to="/signin" />
       )}
-    </div>
+    </Box>
   );
 };
 

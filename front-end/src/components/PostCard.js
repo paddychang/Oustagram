@@ -1,60 +1,40 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import dayjs from "dayjs";
 // Redux
 import { submitComment } from "redux/actions/postsActions";
 import { useDispatch, useSelector } from "react-redux";
 // MUI
-import { styled } from "@mui/material/styles";
-import { Card, Menu, MenuItem, Button } from "@mui/material";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import {
+  Card,
+  Menu,
+  CardHeader,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Avatar,
+  IconButton,
+  Typography,
+} from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
-import SendIcon from "@mui/icons-material/Send";
-import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-// Assets
-import postCardStyles from "assets/jss/components/postCardStyles";
-import noImg from "assets/img/no-img.png";
-import PostDialog from "./PostDialog";
 // Components
 import CommentInput from "components/CommentInput";
 import LikeButton from "components/LikeButton";
 import DeletePost from "components/DeletePost";
 import FollowButton from "./FollowButton";
-
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+import PostDialog from "./PostDialog";
 
 export default function PostCard({ post }) {
-  const [expanded, setExpanded] = useState(false);
+  // States
   const initialState = { comment: "", error: "" };
   const [state, setState] = useState(initialState);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [follow, setFollow] = useState(false);
+  // Redux
   const UI = useSelector((state) => state.UI);
   const user = useSelector((state) => state.user);
   const disptach = useDispatch();
   const date = dayjs(post.createdAt).format("DD-MM-YYYY HH:mm:ss");
-  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const [follow, setFollow] = useState(false);
 
   // Submit a Comment
   const handleSubmit = (e) => {
