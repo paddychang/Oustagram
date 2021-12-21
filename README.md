@@ -1,4 +1,4 @@
-# ** Oustagram version: 1.0**
+# Oustagram version: 1.0
 
 ## This is the final project for GA React development online course.
 
