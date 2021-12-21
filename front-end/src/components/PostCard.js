@@ -28,7 +28,6 @@ export default function PostCard({ post }) {
   const initialState = { comment: "", error: "" };
   const [state, setState] = useState(initialState);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [follow, setFollow] = useState(false);
   // Redux
   const UI = useSelector((state) => state.UI);
   const user = useSelector((state) => state.user);
@@ -78,9 +77,6 @@ export default function PostCard({ post }) {
         {post.userHandle !== user.credentials.handle && (
           <FollowButton
             setAnchorEl={setAnchorEl}
-            follow={follow}
-            setFollow={setFollow}
-            follower={post.userHandle}
             userHandle={post.userHandle}
           />
         )}

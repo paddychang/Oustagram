@@ -16,7 +16,6 @@ export const getUserData = () => (dispatch) => {
   axios
     .get("/user")
     .then((res) => {
-      console.log(res.data);
       dispatch({
         type: SET_USER,
         payload: res.data,
@@ -97,7 +96,6 @@ export const setFollowed = (follower) => (dispatch) => {
   axios
     .post(`/user/${follower}/follow`)
     .then((res) => {
-      console.log(res.data);
       dispatch({
         type: SET_FOLLOWED,
         payload: res.data.newFollower,
@@ -107,12 +105,10 @@ export const setFollowed = (follower) => (dispatch) => {
 };
 
 export const setUnfollowed = (follower) => (dispatch) => {
-  console.log("action check", follower);
   dispatch({ type: LOADING_USER });
   axios
     .post(`/user/${follower}/unfollow`)
     .then((res) => {
-      console.log("return data ", res.data);
       dispatch({ type: SET_UNFOLLOWED, payload: follower });
     })
     .catch((err) => console.log(err));

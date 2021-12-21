@@ -11,19 +11,16 @@ import {
   DialogActions,
 } from "@mui/material";
 
-const FollowButton = ({
-  follower,
-  setAnchorEl,
-  follow,
-  setFollow,
-  userHandle,
-}) => {
+const FollowButton = ({ setAnchorEl, userHandle }) => {
   const [open, setOpen] = useState(false);
   const dipatch = useDispatch();
   const followers = useSelector((state) => state.user.followers);
+  const [follow, setFollow] = useState(false);
 
   useEffect(() => {
-    setFollow(followers.some((el) => el.userHandle !== userHandle));
+    followers.some((el) => el.follower === userHandle)
+      ? setFollow(true)
+      : setFollow(false);
     // eslint-disable-next-line
   }, []);
 
@@ -35,14 +32,14 @@ const FollowButton = ({
     setAnchorEl(null);
   };
   const handelFollow = () => {
-    dipatch(setFollowed(follower));
+    dipatch(setFollowed(userHandle));
     setFollow(true);
     setOpen(false);
     setAnchorEl(null);
   };
 
   const handelUnfollow = () => {
-    dipatch(setUnfollowed(follower));
+    dipatch(setUnfollowed(userHandle));
     setFollow(false);
     setOpen(false);
     setAnchorEl(null);
@@ -64,7 +61,7 @@ const FollowButton = ({
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         {follow ? (
           <>
-            <DialogTitle>{`Do you want to unfollow ${follower} ?`}</DialogTitle>
+            <DialogTitle>{`Do you want to unfollow ${userHandle} ?`}</DialogTitle>
             <DialogActions>
               <Button onClick={handleClose} color="info">
                 Cancel
@@ -76,7 +73,7 @@ const FollowButton = ({
           </>
         ) : (
           <>
-            <DialogTitle>{`Do you want to follow ${follower} ?`}</DialogTitle>
+            <DialogTitle>{`Do you want to follow ${userHandle} ?`}</DialogTitle>
             <DialogActions>
               <Button onClick={handleClose} color="error">
                 Cancel

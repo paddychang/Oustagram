@@ -64,7 +64,7 @@ const userReducer = (state = initialState, { type, payload }) => {
     case SET_UNFOLLOWED:
       return {
         ...state,
-        followers: state.likes.filter((f) => f.follower !== payload.follower),
+        followers: state.followers.filter((f) => f.follower !== payload),
       };
     default:
       return state;
