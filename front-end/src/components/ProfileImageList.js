@@ -1,24 +1,15 @@
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 
-export default function ProfileImageList({ posts }) {
+export default function ProfileImageList({ post }) {
   return (
-    <ImageList
-      sx={{ width: 1150, height: "auto", mt: 5 }}
-      cols={3}
-      rowHeight={300}
-      gap={10}
-    >
-      {posts.map((item) => (
-        <ImageListItem key={item.imageUrl}>
-          <img
-            src={item.imageUrl}
-            alt="Images Grid"
-            loading="lazy"
-            style={{ objectFit: "cover", height: 300 }}
-          />
-        </ImageListItem>
-      ))}
-    </ImageList>
+    <ImageListItem key={post.imageUrl}>
+      <img
+        src={post.imageUrl}
+        alt="Images Grid"
+        loading="lazy"
+        style={{ objectFit: "cover", height: 300 }}
+      />
+    </ImageListItem>
   );
 }

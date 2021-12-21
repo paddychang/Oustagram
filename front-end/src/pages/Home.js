@@ -19,7 +19,6 @@ const Home = () => {
     const getData = async () => {
       dispatch(getAllPosts());
     };
-
     getData();
     // eslint-disable-next-line
   }, []);

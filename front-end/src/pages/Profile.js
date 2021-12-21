@@ -9,6 +9,7 @@ import {
   Box,
   IconButton,
   Divider,
+  ImageList,
 } from "@mui/material";
 //Redux
 import { uploadImage } from "redux/actions/userActions";
@@ -96,7 +97,16 @@ const Profile = () => {
           </Box>
         </Box>
         <Divider sx={{ fontSize: 26 }}>Your Posts</Divider>
-        <ProfileImageList posts={posts} />
+        <ImageList
+          sx={{ width: 1150, height: "auto", mt: 5 }}
+          cols={3}
+          rowHeight={300}
+          gap={10}
+        >
+          {posts.map((post) => (
+            <ProfileImageList post={post} />
+          ))}
+        </ImageList>
       </Container>
     ) : (
       <Container maxWidth="lg" sx={{ mt: 5 }}>

@@ -7,6 +7,7 @@ import {
   UNLIKE_POST,
   SET_UNFOLLOWED,
   SET_FOLLOWED,
+  SET_PROFILE_POSTS,
 } from "../types";
 
 const initialState = {
@@ -66,6 +67,12 @@ const userReducer = (state = initialState, { type, payload }) => {
         ...state,
         followers: state.followers.filter((f) => f.follower !== payload),
       };
+    case SET_PROFILE_POSTS:
+      return {
+        ...state,
+        posts: [...state.posts, { ...payload }],
+      };
+
     default:
       return state;
   }

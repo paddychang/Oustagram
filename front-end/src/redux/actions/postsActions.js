@@ -13,6 +13,7 @@ import {
   SUBMIT_COMMENT,
   ADD_COMMENT_COUNT,
   UPDATA_POST_IMAGE,
+  SET_PROFILE_POSTS,
 } from "../types";
 import axios from "axios";
 
@@ -63,6 +64,8 @@ export const createPost = (newPost, file) => (dispatch) => {
     .then((postId) => {
       uploadImage(postId, file).then((imageUrl) => {
         dispatch({ type: UPDATA_POST_IMAGE, payload: { postId, imageUrl } });
+
+        dispatch({ type: SET_PROFILE_POSTS, payload: { imageUrl } });
       });
     })
     .then(() => {
