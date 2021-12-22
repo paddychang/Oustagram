@@ -72,9 +72,15 @@ const Profile = () => {
               </Typography>
               <EditDetails />
             </Box>
-            <Typography sx={{ mb: 3, fontSize: 24 }}>
-              {`${followers.length} Friends`}
-            </Typography>
+            <Box component="div" sx={{ mb: 3, display: "flex" }}>
+              <Typography variant="h4" sx={{ fontSize: 24, mr: 5 }}>
+                {`${posts.length}  Posts`}
+              </Typography>
+              <Typography variant="h4" sx={{ fontSize: 24 }}>
+                {`${followers.length}  Friends`}
+              </Typography>
+            </Box>
+
             {location && (
               <Typography variant="h3" sx={{ mb: 1 }}>
                 {`Location: ${location}`}
@@ -104,7 +110,7 @@ const Profile = () => {
           gap={10}
         >
           {posts.map((post) => (
-            <ProfileImageList post={post} />
+            <ProfileImageList key={post.postId} post={post} />
           ))}
         </ImageList>
       </Container>

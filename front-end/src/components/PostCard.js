@@ -31,7 +31,7 @@ export default function PostCard({ postId, post }) {
   // Redux
   const UI = useSelector((state) => state.UI);
   const user = useSelector((state) => state.user);
-  const disptach = useDispatch();
+  const dispatch = useDispatch();
   const date = dayjs(post.createdAt).format("DD-MM-YYYY HH:mm:ss");
   const open = Boolean(anchorEl);
 
@@ -42,7 +42,7 @@ export default function PostCard({ postId, post }) {
       setState({ ...state, error: "The comment must not be empty!" });
       return;
     } else {
-      disptach(submitComment(post.postId, { comment: state.comment }));
+      dispatch(submitComment(post.postId, { comment: state.comment }));
       if (!UI.errors && !UI.loading) {
         setState(initialState);
       }
@@ -82,7 +82,11 @@ export default function PostCard({ postId, post }) {
         )}
 
         {user.authenticated && post.userHandle === user.credentials.handle && (
-          <DeletePost postId={post.postId} setAnchorEl={setAnchorEl} />
+          <DeletePost
+            postId={post.postId}
+            setAnchorEl={setAnchorEl}
+            check="postcard"
+          />
         )}
       </Menu>
       <CardMedia

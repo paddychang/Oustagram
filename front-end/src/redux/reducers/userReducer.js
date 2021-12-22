@@ -8,6 +8,7 @@ import {
   SET_UNFOLLOWED,
   SET_FOLLOWED,
   SET_PROFILE_POSTS,
+  DELETE_POST_FOR_USER_PROFILE,
 } from "../types";
 
 const initialState = {
@@ -73,6 +74,11 @@ const userReducer = (state = initialState, { type, payload }) => {
         posts: [...state.posts, { ...payload }],
       };
 
+    case DELETE_POST_FOR_USER_PROFILE:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post.postId !== payload),
+      };
     default:
       return state;
   }

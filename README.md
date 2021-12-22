@@ -1,4 +1,4 @@
-# Oustagram v1.0
+# Oustagram v1.1
 
 ## This is the final project for GA React development online course. The project is going to clone Instergram.
 

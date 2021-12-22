@@ -7,11 +7,12 @@ import {
   DialogActions,
   MenuItem,
 } from "@mui/material";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 // Redux
 import { deletePost } from "redux/actions/postsActions";
 import { useDispatch } from "react-redux";
 
-const DeletePost = ({ postId, setAnchorEl }) => {
+const DeletePost = ({ postId, setAnchorEl, check }) => {
   const [open, setOpen] = useState(false);
   const dipatch = useDispatch();
 
@@ -29,11 +30,18 @@ const DeletePost = ({ postId, setAnchorEl }) => {
 
   return (
     <>
-      <MenuItem>
+      {check === "postcard" ? (
+        <MenuItem>
+          <Button onClick={handleOpen} color="error" size="small">
+            Delete
+          </Button>
+        </MenuItem>
+      ) : (
         <Button onClick={handleOpen} color="error" size="small">
-          Delete
+          <DeleteForeverIcon color="error" sx={{ fontSize: 30 }} />
         </Button>
-      </MenuItem>
+      )}
+
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <DialogTitle>Are you sure you want to delete this post ?</DialogTitle>
         <DialogActions>

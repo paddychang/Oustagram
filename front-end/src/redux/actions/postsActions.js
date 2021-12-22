@@ -14,6 +14,7 @@ import {
   ADD_COMMENT_COUNT,
   UPDATA_POST_IMAGE,
   SET_PROFILE_POSTS,
+  DELETE_POST_FOR_USER_PROFILE,
 } from "../types";
 import axios from "axios";
 
@@ -64,8 +65,7 @@ export const createPost = (newPost, file) => (dispatch) => {
     .then((postId) => {
       uploadImage(postId, file).then((imageUrl) => {
         dispatch({ type: UPDATA_POST_IMAGE, payload: { postId, imageUrl } });
-
-        dispatch({ type: SET_PROFILE_POSTS, payload: { imageUrl } });
+        dispatch({ type: SET_PROFILE_POSTS, payload: { postId, imageUrl } });
       });
     })
     .then(() => {
@@ -138,8 +138,8 @@ export const deletePost = (postId) => (dispatch) => {
   axios
     .delete(`/post/${postId}`)
     .then((res) => {
-      console.log(res.data.message);
       dispatch({ type: DELETE_POST, payload: postId });
+      dispatch({ type: DELETE_POST_FOR_USER_PROFILE, payload: postId });
     })
     .catch((err) => console.log(err));
 };
