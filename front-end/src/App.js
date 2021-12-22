@@ -44,7 +44,7 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" exact element={<Home />} />
-            <Route path="/profile" exact element={<Profile />} />
+            <Route path="/profile/:handle" exact element={<Profile />} />
             <Route
               path="/signin"
               exact

@@ -34,7 +34,7 @@ const ProfileCard = () => {
   return (
     <>
       <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
-        <Link to="profile">
+        <Link to={`/profile/${handle}`}>
           <Avatar
             aria-label="recipe"
             src={imageUrl}
@@ -42,9 +42,11 @@ const ProfileCard = () => {
           />
         </Link>
         <Box component="div" sx={{ ml: 3 }}>
-          <Typography variant="h1" sx={{ mb: 0.5 }}>
-            {handle}
-          </Typography>
+          <Link to={`/profile/${handle}`}>
+            <Typography variant="h1" color="secondary" sx={{ mb: 0.5 }}>
+              {handle}
+            </Typography>
+          </Link>
           <Typography variant="h3" color="gray" sx={{ mb: 0.5 }}>
             {location}
           </Typography>

@@ -15,7 +15,7 @@ import NewPostDialog from "components/NewPostDialog";
 
 const Header = () => {
   const classes = headerStyles();
-  const authenticated = useSelector((state) => state.user.authenticated);
+  const { authenticated, credentials } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -40,7 +40,10 @@ const Header = () => {
                   <HomeIcon sx={{ fontSize: 35 }} className={classes.icon} />
                 </Link>
                 <NewPostDialog />
-                <Link to="/profile" className={classes.rightLink}>
+                <Link
+                  to={`/profile/${credentials.handle}`}
+                  className={classes.rightLink}
+                >
                   <AccountBoxIcon
                     sx={{ fontSize: 35 }}
                     className={classes.icon}
