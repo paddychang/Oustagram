@@ -8,8 +8,8 @@
 
 ## Quick View
 
-![ezcv logo](https://github.com/paddychang/Oustagram/tree/main/front-end/src/assets/img/ScreenShot-1.png?raw=true)
-![ezcv logo](https://github.com/paddychang/Oustagram/tree/main/front-end/src/assets/img/ScreenShot-2.png?raw=true)
+![Screen Shot 1](https://github.com/paddychang/Oustagram/tree/main/front-end/src/assets/img/ScreenShot-1.png)
+![Screen Shot 2](https://github.com/paddychang/Oustagram/tree/main/front-end/src/assets/img/ScreenShot-2.png)
 
 ### Key Features
 
