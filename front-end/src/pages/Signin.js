@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // Redux
 import { loginUser } from "redux/actions/userActions";
+import { CLEAR_ERRORS } from "redux/types";
 // MUI
 import {
   CssBaseline,
@@ -28,6 +29,10 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const errors = useSelector((state) => state.UI.errors);
+
+  useEffect(() => {
+    dispatch({ type: CLEAR_ERRORS });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();

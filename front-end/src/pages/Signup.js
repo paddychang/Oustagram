@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { signupUser } from "redux/actions/userActions";
+import { CLEAR_ERRORS } from "redux/types";
 // MUI
 import {
   Avatar,
@@ -32,6 +33,10 @@ export default function SignUp() {
     confirmPassword: "",
     handle: "",
   });
+
+  useEffect(() => {
+    dispatch({ type: CLEAR_ERRORS });
+  }, []);
 
   const handleChange = (e) => {
     setNewUser({ ...newUser, [e.target.id]: e.target.value });
