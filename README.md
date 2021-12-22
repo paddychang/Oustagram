@@ -8,8 +8,8 @@
 
 ## Quick View
 
-![Screen Shot 1](https://github.com/paddychang/Oustagram/tree/main/ScreenShot-1.png?raw=true)
-![Screen Shot 2](https://github.com/paddychang/Oustagram/tree/main/ScreenShot-2.png?raw=true)
+![Screen Shot 1](/ScreenShot-1.png?raw=true)
+![Screen Shot 2](/ScreenShot-2.png?raw=true)
 
 ### Key Features
 
