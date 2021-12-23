@@ -8,6 +8,7 @@ import {
   SET_UNFOLLOWED,
   SET_FOLLOWED,
   SET_PROFILE_POSTS,
+  SET_CLIKCED_USER,
   DELETE_POST_FOR_USER_PROFILE,
 } from "../types";
 
@@ -19,6 +20,11 @@ const initialState = {
   notifications: [],
   followers: [],
   posts: [],
+  clickedUser: {
+    posts: [],
+    followers: [],
+    user: {},
+  },
 };
 
 const userReducer = (state = initialState, { type, payload }) => {
@@ -44,6 +50,7 @@ const userReducer = (state = initialState, { type, payload }) => {
     case LIKE_POST:
       return {
         ...state,
+        loading: false,
         likes: [
           ...state.likes,
           {
@@ -55,29 +62,41 @@ const userReducer = (state = initialState, { type, payload }) => {
     case UNLIKE_POST:
       return {
         ...state,
+        loading: false,
         likes: state.likes.filter((like) => like.screamId !== payload.screamId),
       };
 
     case SET_FOLLOWED:
       return {
         ...state,
+        loading: false,
         followers: [...state.followers, { ...payload }],
       };
     case SET_UNFOLLOWED:
       return {
         ...state,
+        loading: false,
         followers: state.followers.filter((f) => f.follower !== payload),
       };
     case SET_PROFILE_POSTS:
       return {
         ...state,
+        loading: false,
         posts: [...state.posts, { ...payload }],
       };
 
     case DELETE_POST_FOR_USER_PROFILE:
       return {
         ...state,
+        loading: false,
         posts: state.posts.filter((post) => post.postId !== payload),
+      };
+
+    case SET_CLIKCED_USER:
+      return {
+        ...state,
+        loading: false,
+        clickedUser: { ...payload },
       };
     default:
       return state;

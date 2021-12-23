@@ -2,12 +2,13 @@
 import {
   Box,
   Typography,
-  Avatar,
   Button,
   Dialog,
   DialogTitle,
   DialogActions,
 } from "@mui/material";
+// Components
+import ProfileDialog from "./ProfileDialog";
 
 const FollowersCard = ({
   open,
@@ -16,13 +17,14 @@ const FollowersCard = ({
   handleOpen,
   handelUnfollow,
   follower,
+  setAnchorEl,
 }) => {
   return (
     <Box sx={{ display: "flex", alignItems: "center", mb: 1, mt: 3 }}>
-      <Avatar
-        aria-label="recipe"
-        src={data.followerImage}
-        sx={{ width: 60, height: 60 }}
+      <ProfileDialog
+        userHandle={data.follower}
+        userImage={data.followerImage}
+        setAnchorEl={setAnchorEl}
       />
       <Box
         component="div"

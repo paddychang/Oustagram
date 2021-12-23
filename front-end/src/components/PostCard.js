@@ -11,7 +11,6 @@ import {
   CardMedia,
   CardContent,
   CardActions,
-  Avatar,
   IconButton,
   Typography,
 } from "@mui/material";
@@ -22,6 +21,7 @@ import LikeButton from "components/LikeButton";
 import DeletePost from "components/DeletePost";
 import FollowButton from "./FollowButton";
 import PostDialog from "./PostDialog";
+import ProfileDialog from "./ProfileDialog";
 
 export default function PostCard({ postId, post }) {
   // States
@@ -49,8 +49,8 @@ export default function PostCard({ postId, post }) {
     }
   };
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleClick = (e) => {
+    setAnchorEl(e.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
@@ -59,9 +59,15 @@ export default function PostCard({ postId, post }) {
   return (
     <Card sx={{ mb: 5, mr: 5 }}>
       <CardHeader
-        avatar={<Avatar aria-label="recipe" src={post.userImage} />}
+        avatar={
+          <ProfileDialog
+            userHandle={post.userHandle}
+            userImage={post.userImage}
+            setAnchorEl={setAnchorEl}
+          />
+        }
         action={
-          <IconButton aria-label="settings" onClick={handleClick}>
+          <IconButton aria-label="settings" onClick={(e) => handleClick(e)}>
             <MoreVertIcon />
           </IconButton>
         }

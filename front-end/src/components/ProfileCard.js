@@ -9,7 +9,7 @@ import { Box, Divider, Typography, Avatar } from "@mui/material";
 import FollowersCard from "./FollowersCard";
 import Copyright from "components/Copyright";
 
-const ProfileCard = () => {
+const ProfileCard = ({ setAnchorEl }) => {
   const [open, setOpen] = useState(false);
   const [follower, setFollower] = useState("");
   // const followers = useSelector((state) => state.user.followers);
@@ -63,6 +63,7 @@ const ProfileCard = () => {
               handleOpen={handleOpen}
               handelUnfollow={handelUnfollow}
               follower={follower}
+              setAnchorEl={setAnchorEl}
             />
           ))
         : null}

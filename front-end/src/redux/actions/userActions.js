@@ -8,6 +8,7 @@ import {
   SET_FOLLOWED,
   SET_UNFOLLOWED,
   SET_AUTHENTICATED,
+  SET_CLIKCED_USER,
 } from "../types";
 import axios from "axios";
 
@@ -43,6 +44,19 @@ export const loginUser = (userData, navigate) => (dispatch) => {
         payload: err.response.data,
       });
     });
+};
+
+export const getUserByHandle = (userHandle) => (dispatch) => {
+  dispatch({ type: LOADING_USER });
+  axios
+    .get(`/user/${userHandle}`)
+    .then((res) => {
+      dispatch({
+        type: SET_CLIKCED_USER,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
 };
 
 export const signupUser = (newUserData, navigate) => (dispatch) => {
@@ -93,6 +107,7 @@ export const editUserDetails = (userDetails) => (dispatch) => {
 };
 
 export const setFollowed = (follower) => (dispatch) => {
+  dispatch({ type: LOADING_USER });
   axios
     .post(`/user/${follower}/follow`)
     .then((res) => {

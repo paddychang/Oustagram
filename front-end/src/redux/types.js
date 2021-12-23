@@ -14,6 +14,7 @@ export const SET_FOLLOWED = "SET_FOLLOWED";
 export const SET_UNFOLLOWED = "SET_UNFOLLOWED";
 export const SET_PROFILE_POSTS = "SET_PROFILE_POSTS";
 export const DELETE_POST_FOR_USER_PROFILE = "DELETE_POST_FOR_USER_PROFILE";
+export const SET_CLIKCED_USER = "SET_CLIKCED_USER";
 
 // Posts reducer types
 export const SET_POSTS = "SET_POSTS";

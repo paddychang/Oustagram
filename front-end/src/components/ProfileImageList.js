@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { submitComment } from "redux/actions/postsActions";
@@ -8,11 +9,13 @@ import { ImageListItem, Box } from "@mui/material";
 import PostDialog from "./PostDialog";
 import DeletePost from "components/DeletePost";
 
-export default function ProfileImageList({ post }) {
+export default function ProfileImageList({ post, setAnchorEl }) {
   const initialState = { comment: "", error: "" };
   const [state, setState] = useState(initialState);
   const UI = useSelector((state) => state.UI);
   const dispatch = useDispatch();
+  const credentials = useSelector((state) => state.user.credentials);
+  const params = useParams();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -58,7 +61,13 @@ export default function ProfileImageList({ post }) {
           handleSubmit={handleSubmit}
           postId={post.postId}
         />
-        <DeletePost postId={post.postId} check="profilelist" />
+        {params.handle === credentials.handle && (
+          <DeletePost
+            postId={post.postId}
+            check="profilelist"
+            setAnchorEl={setAnchorEl}
+          />
+        )}
       </Box>
     </ImageListItem>
   );
