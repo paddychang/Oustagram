@@ -1,4 +1,4 @@
-# Oustagram v1.1
+# Oustagram v1.2
 
 ## This is the final project for GA React development online course. The project is going to clone Instergram.
 
@@ -62,6 +62,7 @@
 ### Share experience
 
 - Data structure and follow is very very important.
+- Very very careful to pass useState from a root component to children compoents because once state has been changed, React will re-render all children components.
 - Data updating setps must be planed before creating front-end, otherwise it will cause unpredictable actions when React render pages.
 - UI and error control can tell React when should render next pages.
 - Great user experience satisfy customers but it is a nightmare for developer.
