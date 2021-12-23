@@ -37,7 +37,7 @@
 
 - When PostDialog componet opened with wrong image or the image may be changed druing opening.
 - If someone deleted a post, the other user has to reload the page.
-- fetch data in different page could cause inconsisteny data.
+- fetch data in different page could cause inconsisteny data in Redux.
 - Passing state to child dialog compoent, the state sometime does not match its change.
 - When more and more posts have been created, open the home page and click the function button immediately cause page crashed because large images data loading have not finished.
 
